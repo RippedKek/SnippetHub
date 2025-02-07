@@ -1,12 +1,14 @@
 import express from 'express'
 import { configDotenv } from 'dotenv'
 import cors from 'cors'
+import { connectDB } from './config/config.js'
 
 import userRoutes from './routes/userRoute.js'
 
 const app = express()
 
 configDotenv()
+connectDB()
 
 // middlewares
 app.use(cors())

@@ -10,16 +10,16 @@ import Modal from 'react-modal'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
-function getIcon(language) {
+function getIcon(language, index) {
   switch (language) {
     case 'python':
-      return <FaPython size={30} />
+      return <FaPython size={30} key={index} />
     case 'javascript':
-      return <IoLogoJavascript size={30} />
+      return <IoLogoJavascript size={30} key={index} />
     case 'react':
-      return <FaReact size={30} />
+      return <FaReact size={30} key={index} />
     case 'html':
-      return <FaHtml5 size={30} />
+      return <FaHtml5 size={30} key={index} />
     default:
       return null
   }
@@ -50,7 +50,7 @@ const Post = ({ post }) => {
   }
 
   return (
-    <div className='w-[323px] h-[380px] mt-6 p-2 rounded-3xl border-[6px] border-black bg-white flex flex-col items-start'>
+    <div className='w-[323px] h-[380px] mt-6 p-2 rounded-3xl border-[6px] border-black bg-white flex flex-col items-start hover:shadow-xl transition-all duration-150'>
       <div className='flex items-center justify-between w-full'>
         <h1 className='font-bold text-lg'>{post.name}</h1>
         <button
@@ -76,10 +76,10 @@ const Post = ({ post }) => {
         style={{
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.75)',
-            zIndex: 9999, // Ensure the overlay has high z-index
+            zIndex: 9999,
           },
           content: {
-            zIndex: 9999, // Ensure the modal content has high z-index
+            zIndex: 9999,
             width: '500px',
             minHeight: '300px',
             margin: 'auto',
@@ -122,7 +122,7 @@ const Post = ({ post }) => {
       </Modal>
 
       <div className='flex gap-2 mt-auto self-end'>
-        {post.language.map((lang) => getIcon(lang))}
+        {post.language.map((lang, index) => getIcon(lang, index))}
       </div>
     </div>
   )

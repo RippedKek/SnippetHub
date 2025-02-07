@@ -7,7 +7,7 @@ import { FaInstagram } from 'react-icons/fa'
 
 const Profile = () => {
   return (
-    <div className='flex flex-col w-[80%] min-h-[calc(100vh-118px)] border-x-[12px] border-b-[12px] border-black'>
+    <div className='flex flex-col sticky top-[118px] w-[80%] max-h-[calc(100vh-118px)] border-x-[12px] border-b-[12px] border-black'>
       <div className='h-[30%] relative'>
         <div className='h-[60%] w-full bg-profile border-b-[12px] border-black'>
           {' '}

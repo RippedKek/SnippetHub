@@ -3,7 +3,7 @@ import Sidebar from '@/components/Sidebar'
 
 export default function Home() {
   return (
-    <div className='md:flex justify-between'>
+    <div className='md:flex justify-between relative'>
       <Feed />
       <Sidebar />
     </div>

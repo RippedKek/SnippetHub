@@ -1,5 +1,4 @@
-import mongoose from 'mongoose'
-const Schema = mongoose.Schema
+import { Schema, model } from 'mongoose'
 
 const SnippetSchema = new Schema({
   name: {
@@ -7,6 +6,10 @@ const SnippetSchema = new Schema({
     required: true,
   },
   username: {
+    type: String,
+    required: true,
+  },
+  userId: {
     type: String,
     required: true,
   },
@@ -41,7 +44,6 @@ SnippetSchema.pre('save', function (next) {
   next()
 })
 
-snippetModel =
-  mongoose.models.Snippets || mongoose.model('Snippets', SnippetSchema)
+const snippetModel = model.Snippets || model('Snippets', SnippetSchema)
 
 export default snippetModel

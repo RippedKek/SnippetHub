@@ -3,7 +3,8 @@ import { configDotenv } from 'dotenv'
 import cors from 'cors'
 import { connectDB } from './config/config.js'
 
-import userRoutes from './routes/userRoute.js'
+import userRouter from './routes/userRoute.js'
+import snippetRouter from './routes/snippetRoute.js'
 
 const app = express()
 
@@ -15,7 +16,8 @@ app.use(cors())
 app.use(express.json())
 
 // routes
-app.use('/users', userRoutes)
+app.use('/users', userRouter)
+app.use('/snippets', snippetRouter)
 
 app.get('/', (req, res) => {
   res.status(200).json({

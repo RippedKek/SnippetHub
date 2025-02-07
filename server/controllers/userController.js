@@ -4,9 +4,13 @@ import userModel from '../models/userModel.js'
 
 class UserController {
   static async getUser(req, res) {
-    res.status(200).json({
-      message: 'Hello User',
-    })
+    try {
+      const user = await userModel.findById(req.id)
+      res.status(200).json({ user })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ message: err.message })
+    }
   }
 
   static async register(req, res) {
@@ -40,7 +44,7 @@ class UserController {
         return res.status(401).json({ message: 'Invalid credentials' })
       }
 
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ user }, process.env.JWT_SECRET, {
         expiresIn: '1d',
       })
 

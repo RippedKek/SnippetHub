@@ -41,6 +41,7 @@ SnippetSchema.pre('save', function (next) {
   next()
 })
 
-snippetModel = mongoose.model('Snippets', SnippetSchema)
+snippetModel =
+  mongoose.models.Snippets || mongoose.model('Snippets', SnippetSchema)
 
 export default snippetModel

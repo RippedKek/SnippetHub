@@ -22,27 +22,35 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  bio: {
+  city: {
     type: String,
-    default: '',
+    required: true,
   },
-  avatarUrl: {
+  country: {
     type: String,
-    default: '',
+    required: true,
   },
-  snippets: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Snippet',
-    },
-  ],
+  job: {
+    type: String,
+    required: true,
+    default: 'Unemployed',
+  },
+  organization: {
+    type: String,
+    required: true,
+    default: 'Unemployed',
+  },
+  snippets: {
+    type: Array,
+    default: [],
+  },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   updatedAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
 })
 
@@ -51,6 +59,6 @@ UserSchema.pre('save', function (next) {
   next()
 })
 
-const userModel = model('User', UserSchema)
+const userModel = model.Developer || model('Developer', UserSchema)
 
 export default userModel

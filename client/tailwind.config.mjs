@@ -14,6 +14,9 @@ export default {
         body: '#45C9E3',
         profile: '#E80808',
       },
+      fontFamily: {
+        code: 'Fira Code',
+      },
     },
   },
   plugins: [],

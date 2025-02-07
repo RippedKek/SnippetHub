@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar'
 import './globals.css'
+import Sidebar from '@/components/Sidebar'
 
 export const metadata = {
   title: 'SnippetHub',

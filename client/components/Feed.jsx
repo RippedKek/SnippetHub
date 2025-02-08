@@ -28,7 +28,7 @@ const Feed = () => {
   }, [])
 
   return (
-    <div className='w-[70%] pb-8 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 grid grid-cols-1 lg:grid-cols-2 md:w-full bg-body border-[12px] border-t-0 border-black min-h-[calc(100vh-118px)] overflow-y-scroll'>
+    <div className='w-[70%] pb-8 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 grid grid-cols-1 lg:grid-cols-2 md:w-full bg-gray-900 border-l-[12px]  border-black min-h-[calc(100vh-118px)] overflow-y-scroll'>
       {loading ? (
         <div className='flex justify-center items-center w-full min-h-[calc(100vh-118px)]'>
           <HashLoader

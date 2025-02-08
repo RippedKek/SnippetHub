@@ -29,7 +29,6 @@ export default function Home() {
           }
         )
         setUser(response.data.user)
-        console.log(user)
       } catch (err) {
         console.log(err)
       }

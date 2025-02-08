@@ -1,11 +1,19 @@
 'use client'
 
 import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 import { FaPython } from 'react-icons/fa'
 import { IoLogoJavascript } from 'react-icons/io5'
-import { FaHtml5 } from 'react-icons/fa'
-import { FaReact } from 'react-icons/fa'
+import {
+  FaHtml5,
+  FaReact,
+  FaJava,
+  FaPhp,
+  FaCss3Alt,
+  FaSwift,
+} from 'react-icons/fa'
 import { FaCopy } from 'react-icons/fa'
+import { SiCplusplus, SiTypescript, SiKotlin, SiRuby } from 'react-icons/si'
 import Modal from 'react-modal'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -20,6 +28,22 @@ function getIcon(language, index) {
       return <FaReact size={30} key={index} />
     case 'html':
       return <FaHtml5 size={30} key={index} />
+    case 'java':
+      return <FaJava size={30} key={index} />
+    case 'php':
+      return <FaPhp size={30} key={index} />
+    case 'css':
+      return <FaCss3Alt size={30} key={index} />
+    case 'swift':
+      return <FaSwift size={30} key={index} />
+    case 'cpp':
+      return <SiCplusplus size={30} key={index} />
+    case 'typescript':
+      return <SiTypescript size={30} key={index} />
+    case 'kotlin':
+      return <SiKotlin size={30} key={index} />
+    case 'ruby':
+      return <SiRuby size={30} key={index} />
     default:
       return null
   }
@@ -50,7 +74,7 @@ const Post = ({ post }) => {
   }
 
   return (
-    <div className='w-[323px] h-[380px] mt-6 p-2 rounded-3xl border-[6px] border-black bg-white flex flex-col items-start hover:shadow-xl transition-all duration-150'>
+    <div className='w-[323px] h-[380px] mt-6 p-2 rounded-3xl border-[6px] border-black bg-green-500 flex flex-col items-start hover:shadow-xl transition-all duration-150'>
       <div className='flex items-center justify-between w-full'>
         <h1 className='font-bold text-lg'>{post.name}</h1>
         <button

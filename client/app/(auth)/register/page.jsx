@@ -121,7 +121,25 @@ const RegisterPage = () => {
     console.log('Form Submitted:', formData)
 
     try {
-      await axios.post('http://localhost:8000/users/register', formData)
+      const user = {
+        name: formData.name,
+        username: formData.username,
+        password: formData.password,
+        email: formData.email,
+        city: formData.city,
+        country: formData.country,
+        job: formData.job,
+        organization: formData.organization,
+        technologies: formData.technologies,
+      }
+      const response = await axios.post(
+        'http://localhost:8000/users/register',
+        user
+      )
+      if (response.data.message) {
+        throw new Error(response.data.message)
+      }
+      window.location.href = '/login'
     } catch (err) {
       console.log(err)
     }

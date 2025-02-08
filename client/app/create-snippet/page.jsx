@@ -9,7 +9,7 @@ export default function AddSnippet() {
   const [snippetDescription, setSnippetDescription] = useState('')
   const [snippetLanguages, setSnippetLanguages] = useState([])
   const [baseLanguage, setBaseLanguage] = useState('python')
-  const [snippetCode, setSnippetCode] = useState('')
+  const [snippetCode, setSnippetCode] = useState('Code here...')
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -83,9 +83,9 @@ export default function AddSnippet() {
       <h1 className='text-3xl font-bold mt-4'>Add a Snippet</h1>
       <form
         onSubmit={handleSubmit}
-        className='flex items-start justify-between gap-6 mt-4'
+        className='flex flex-col md:flex-row items-start justify-between gap-6 mt-4'
       >
-        <div className='flex flex-col w-1/3'>
+        <div className='flex flex-col w-full md:w-1/3'>
           <input
             type='text'
             name='title'
@@ -135,14 +135,17 @@ export default function AddSnippet() {
 
           <button
             type='submit'
-            className='mt-4 w-full h-12 bg-black text-white rounded-2xl px-4 outline-none'
+            className='mt-4 w-full hidden md:block h-12 bg-black text-white rounded-2xl px-4 outline-none'
           >
             Submit Snippet
           </button>
         </div>
 
         {/* Monaco Code Editor */}
-        <div className='w-2/3 border-black' style={{ height: '450px' }}>
+        <div
+          className='w-full md:w-2/3 border-black'
+          style={{ height: '480px' }}
+        >
           <Editor
             height='100%'
             defaultLanguage={baseLanguage}
@@ -156,6 +159,12 @@ export default function AddSnippet() {
             }}
           />
         </div>
+        <button
+          type='submit'
+          className='mt-4 w-full md:hidden h-12 bg-black text-white rounded-2xl px-4 outline-none'
+        >
+          Submit Snippet
+        </button>
       </form>
     </div>
   )

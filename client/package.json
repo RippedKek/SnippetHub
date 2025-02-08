@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
     "axios": "^1.7.9",
     "js-beautify": "^1.14.3",
     "next": "15.1.6",

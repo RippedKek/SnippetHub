@@ -12,7 +12,9 @@ const ControlBar = () => {
       <TiPin size={32} className='cursor-pointer' />
       <FaUser size={32} className='cursor-pointer' />
       <FaUserEdit size={32} className='cursor-pointer' />
-      <FaPencilAlt size={32} className='cursor-pointer' />
+      <Link href='/create-snippet'>
+        <FaPencilAlt size={32} className='cursor-pointer' />
+      </Link>
       <Link href='/'>
         <FaHome size={32} className='cursor-pointer' />
       </Link>

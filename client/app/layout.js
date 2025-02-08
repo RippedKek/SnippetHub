@@ -12,7 +12,10 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body className={`antialiased`}>
         <Navbar />
-        {children}
+        <div className='md:flex justify-between relative'>
+          {children}
+          <Sidebar />
+        </div>
       </body>
     </html>
   )

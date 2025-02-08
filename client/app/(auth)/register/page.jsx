@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import {
   FaReact,
@@ -22,7 +23,7 @@ const RegisterPage = () => {
     confirmPassword: '',
     city: '',
     country: '',
-    job: 'Unemployed', // Default value
+    job: 'Unemployed',
     organization: '',
     technologies: [],
     termsAccepted: false,
@@ -103,7 +104,7 @@ const RegisterPage = () => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (formData.password !== formData.confirmPassword) {
       setAlert('Passwords do not match')
@@ -118,7 +119,12 @@ const RegisterPage = () => {
     setAlert('')
 
     console.log('Form Submitted:', formData)
-    // Handle form submission logic here
+
+    try {
+      await axios.post('http://localhost:8000/users/register', formData)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (

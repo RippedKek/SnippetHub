@@ -40,6 +40,10 @@ const UserSchema = new Schema({
     required: true,
     default: 'Unemployed',
   },
+  technologies: {
+    type: Array,
+    default: [],
+  },
   snippets: {
     type: Array,
     default: [],

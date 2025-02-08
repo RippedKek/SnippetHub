@@ -1,4 +1,5 @@
 import snippetModel from '../models/snippetModel.js'
+import userModel from '../models/userModel.js'
 
 class SnippetController {
   static async listSnippets(req, res) {
@@ -23,8 +24,17 @@ class SnippetController {
         snippet: payload.snippet,
       }
 
+      const user = await userModel.findById(payload.user._id)
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+
       const snippet = await snippetModel.create(newSnippet)
       await snippet.save()
+
+      user.snippets.push(snippet._id)
+      await user.save()
+
       res.status(201).json({ snippet })
     } catch (err) {
       console.log(err)

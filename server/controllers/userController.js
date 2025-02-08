@@ -5,7 +5,7 @@ import userModel from '../models/userModel.js'
 class UserController {
   static async getUser(req, res) {
     try {
-      const user = await userModel.findById(req.id)
+      const user = req.body.user
       res.status(200).json({ user })
     } catch (err) {
       console.log(err)

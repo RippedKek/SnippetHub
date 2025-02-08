@@ -1,11 +1,11 @@
 import ControlBar from './ControlBar'
 import Profile from './Profile'
 
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   return (
     <div className='hidden relative md:flex w-[30%]'>
       <ControlBar />
-      <Profile />
+      <Profile user={user} />
     </div>
   )
 }

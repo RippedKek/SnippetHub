@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import axios from 'axios'
 import Editor from '@monaco-editor/react'
+import Navbar from '@/components/Navbar'
+import Sidebar from '@/components/Sidebar'
 
 export default function AddSnippet() {
   const [snippetTitle, setSnippetTitle] = useState('')
@@ -79,93 +81,99 @@ export default function AddSnippet() {
   }
 
   return (
-    <div className='w-[70%] min-h-[calc(100vh-118px)] border-[12px] border-black border-t-0 pb-8 px-4 md:px-8 lg:px-16'>
-      <h1 className='text-3xl font-bold mt-4'>Add a Snippet</h1>
-      <form
-        onSubmit={handleSubmit}
-        className='flex flex-col md:flex-row items-start justify-between gap-6 mt-4'
-      >
-        <div className='flex flex-col w-full md:w-1/3'>
-          <input
-            type='text'
-            name='title'
-            value={snippetTitle}
-            onChange={handleChange}
-            placeholder='Snippet Title'
-            className='w-full h-12 bg-black text-white rounded-2xl px-4 outline-none'
-          />
-          <textarea
-            name='description'
-            value={snippetDescription}
-            onChange={handleChange}
-            placeholder='Snippet Description (within 250 characters)'
-            className='mt-4 w-full h-60 bg-black text-white rounded-2xl px-4 py-2 outline-none'
-          />
-
-          <select
-            name='baseLanguage'
-            value={baseLanguage}
-            onChange={handleChange}
-            className='mt-4 w-full h-12 bg-black text-white rounded-2xl px-4 outline-none'
+    <>
+      <Navbar />
+      <div className='md:flex justify-between relative'>
+        <div className='w-[70%] min-h-[calc(100vh-118px)] border-[12px] border-black border-t-0 pb-8 px-4 md:px-8 lg:px-16'>
+          <h1 className='text-3xl font-bold mt-4'>Add a Snippet</h1>
+          <form
+            onSubmit={handleSubmit}
+            className='flex flex-col md:flex-row items-start justify-between gap-6 mt-4'
           >
-            <option value='python'>Python</option>
-            <option value='javascript'>JavaScript</option>
-            <option value='react'>React</option>
-            <option value='html'>HTML</option>
-            <option value='css'>CSS</option>
-            <option value='csharp'>C#</option>
-            <option value='java'>Java</option>
-          </select>
+            <div className='flex flex-col w-full md:w-1/3'>
+              <input
+                type='text'
+                name='title'
+                value={snippetTitle}
+                onChange={handleChange}
+                placeholder='Snippet Title'
+                className='w-full h-12 bg-black text-white rounded-2xl px-4 outline-none'
+              />
+              <textarea
+                name='description'
+                value={snippetDescription}
+                onChange={handleChange}
+                placeholder='Snippet Description (within 250 characters)'
+                className='mt-4 w-full h-60 bg-black text-white rounded-2xl px-4 py-2 outline-none'
+              />
 
-          <select
-            name='languages'
-            multiple
-            value={snippetLanguages}
-            onChange={handleLanguagesChange}
-            className='mt-4 w-full h-24 bg-black text-white rounded-2xl px-4 outline-none'
-          >
-            <option value='python'>Python</option>
-            <option value='javascript'>JavaScript</option>
-            <option value='react'>React</option>
-            <option value='html'>HTML</option>
-            <option value='css'>CSS</option>
-            <option value='csharp'>C#</option>
-            <option value='java'>Java</option>
-          </select>
+              <select
+                name='baseLanguage'
+                value={baseLanguage}
+                onChange={handleChange}
+                className='mt-4 w-full h-12 bg-black text-white rounded-2xl px-4 outline-none'
+              >
+                <option value='python'>Python</option>
+                <option value='javascript'>JavaScript</option>
+                <option value='react'>React</option>
+                <option value='html'>HTML</option>
+                <option value='css'>CSS</option>
+                <option value='csharp'>C#</option>
+                <option value='java'>Java</option>
+              </select>
 
-          <button
-            type='submit'
-            className='mt-4 w-full hidden md:block h-12 bg-black text-white rounded-2xl px-4 outline-none'
-          >
-            Submit Snippet
-          </button>
+              <select
+                name='languages'
+                multiple
+                value={snippetLanguages}
+                onChange={handleLanguagesChange}
+                className='mt-4 w-full h-24 bg-black text-white rounded-2xl px-4 outline-none'
+              >
+                <option value='python'>Python</option>
+                <option value='javascript'>JavaScript</option>
+                <option value='react'>React</option>
+                <option value='html'>HTML</option>
+                <option value='css'>CSS</option>
+                <option value='csharp'>C#</option>
+                <option value='java'>Java</option>
+              </select>
+
+              <button
+                type='submit'
+                className='mt-4 w-full hidden md:block h-12 bg-black text-white rounded-2xl px-4 outline-none'
+              >
+                Submit Snippet
+              </button>
+            </div>
+
+            {/* Monaco Code Editor */}
+            <div
+              className='w-full md:w-2/3 border-black'
+              style={{ height: '480px' }}
+            >
+              <Editor
+                height='100%'
+                defaultLanguage={baseLanguage}
+                value={snippetCode}
+                theme='vs-dark'
+                onChange={handleCodeChange}
+                onMount={handleEditorDidMount}
+                options={{
+                  fontSize: 11,
+                  automaticLayout: true,
+                }}
+              />
+            </div>
+            <button
+              type='submit'
+              className='mt-4 w-full md:hidden h-12 bg-black text-white rounded-2xl px-4 outline-none'
+            >
+              Submit Snippet
+            </button>
+          </form>
         </div>
-
-        {/* Monaco Code Editor */}
-        <div
-          className='w-full md:w-2/3 border-black'
-          style={{ height: '480px' }}
-        >
-          <Editor
-            height='100%'
-            defaultLanguage={baseLanguage}
-            value={snippetCode}
-            theme='vs-dark'
-            onChange={handleCodeChange}
-            onMount={handleEditorDidMount}
-            options={{
-              fontSize: 11,
-              automaticLayout: true,
-            }}
-          />
-        </div>
-        <button
-          type='submit'
-          className='mt-4 w-full md:hidden h-12 bg-black text-white rounded-2xl px-4 outline-none'
-        >
-          Submit Snippet
-        </button>
-      </form>
-    </div>
+        <Sidebar />
+      </div>
+    </>
   )
 }

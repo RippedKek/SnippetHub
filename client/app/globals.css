@@ -19,3 +19,22 @@
 .custom-shadow {
   box-shadow: 0 5px 15px -5px black;
 }
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-blink::after {
+  content: '|';
+  animation: blink 1s infinite;
+  display: inline-block;
+  color: #00ff00;
+}

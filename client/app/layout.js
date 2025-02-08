@@ -10,13 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className={`antialiased`}>
-        <Navbar />
-        <div className='md:flex justify-between relative'>
-          {children}
-          <Sidebar />
-        </div>
-      </body>
+      <body className={`antialiased`}>{children}</body>
     </html>
   )
 }

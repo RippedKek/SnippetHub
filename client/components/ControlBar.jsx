@@ -8,7 +8,7 @@ import { FaUserEdit } from 'react-icons/fa'
 
 const ControlBar = () => {
   return (
-    <div className='w-[20%] sticky top-[118px] max-h-[calc(100vh-118px)] flex flex-col justify-start items-center pt-5 gap-5 bg-gray-900 text-gray-200'>
+    <div className='w-[20%] sticky top-[118px] max-h-[calc(100vh-118px)] flex flex-col justify-start items-center pt-5 gap-5 bg-cyan-500 text-white'>
       <TiPin size={32} className='cursor-pointer' />
       <FaUser size={32} className='cursor-pointer' />
       <FaUserEdit size={32} className='cursor-pointer' />

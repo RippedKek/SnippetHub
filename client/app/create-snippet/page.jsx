@@ -88,19 +88,6 @@ export default function AddSnippet() {
     })
   }
 
-  const handleEditorDidMount = (editor, monaco) => {
-    monaco.editor.defineTheme('blackTheme', {
-      base: 'vs-dark',
-      inherit: true,
-      rules: [],
-      colors: {
-        'editor.background': '#000000',
-      },
-    })
-
-    monaco.editor.setTheme('blackTheme')
-  }
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -138,10 +125,8 @@ export default function AddSnippet() {
       />
       <Navbar fullName={user.name} />
       <div className='md:flex justify-between relative'>
-        <div className='w-[70%] min-h-[calc(100vh-118px)] border-l-[12px] border-black bg-gray-900 border-t-0 pb-8 px-4 md:px-8 lg:px-16'>
-          <h1 className='text-3xl font-bold mt-4 text-green-500'>
-            Add a Snippet
-          </h1>
+        <div className='w-[70%] min-h-[calc(100vh-118px)] border-l-[12px] border-black bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 border-t-0 pb-8 px-4 md:px-8 lg:px-16'>
+          <h1 className='text-3xl font-bold mt-4 text-black'>Add a Snippet</h1>
           <form
             onSubmit={handleSubmit}
             className='flex flex-col md:flex-row items-start justify-between gap-6 mt-4'
@@ -153,21 +138,21 @@ export default function AddSnippet() {
                 value={snippetTitle}
                 onChange={handleChange}
                 placeholder='Snippet Title'
-                className='w-full h-12 bg-black text-white rounded-2xl px-4 outline-none focus:outline-green-500 focus:outline-4'
+                className='w-full h-12 bg-black/20 placeholder-white text-white rounded-2xl px-4 outline-4 outline-black focus:outline-black focus:outline-4'
               />
               <textarea
                 name='description'
                 value={snippetDescription}
                 onChange={handleChange}
                 placeholder='Snippet Description (within 250 characters)'
-                className='mt-4 w-full h-60 bg-black text-white rounded-2xl px-4 py-2 outline-none focus:outline-green-500 focus:outline-4'
+                className='mt-4 w-full h-60 placeholder-white bg-black/20 text-white rounded-2xl px-4 py-2 outline-4 outline-black focus:outline-black focus:outline-4'
               />
 
               <select
                 name='baseLanguage'
                 value={baseLanguage}
                 onChange={handleChange}
-                className='mt-4 w-full h-12 bg-black text-white rounded-2xl px-4 outline-none focus:outline-green-500 focus:outline-4'
+                className='mt-4 w-full h-12 bg-black/20 text-black rounded-2xl px-4 outline-4 outline-black focus:outline-black focus:outline-4'
               >
                 <option value='python'>Python</option>
                 <option value='javascript'>JavaScript</option>
@@ -176,6 +161,8 @@ export default function AddSnippet() {
                 <option value='css'>CSS</option>
                 <option value='csharp'>C#</option>
                 <option value='java'>Java</option>
+                <option value='java'>Dart</option>
+                <option value='php'>PHP</option>
               </select>
 
               <select
@@ -183,7 +170,7 @@ export default function AddSnippet() {
                 multiple
                 value={snippetLanguages}
                 onChange={handleLanguagesChange}
-                className='mt-4 w-full h-24 bg-black text-white rounded-2xl px-4 outline-none focus:outline-green-500 focus:outline-4'
+                className='mt-4 w-full h-24 bg-black/20 text-black rounded-2xl px-4 outline-4 outline-black focus:outline-black focus:outline-4'
               >
                 <option value='python'>Python</option>
                 <option value='javascript'>JavaScript</option>
@@ -192,11 +179,13 @@ export default function AddSnippet() {
                 <option value='css'>CSS</option>
                 <option value='csharp'>C#</option>
                 <option value='java'>Java</option>
+                <option value='java'>Dart</option>
+                <option value='php'>PHP</option>
               </select>
 
               <button
                 type='submit'
-                className='mt-4 w-full hidden md:block h-12  text-black rounded-2xl px-4 outline-none bg-green-500'
+                className='mt-4 w-full hidden md:block h-12  text-black rounded-md hover:rounded-2xl px-4 outline-none bg-green-500 hover:bg-green-600 transition-all duration-200 border-4 border-black'
               >
                 Submit Snippet
               </button>
@@ -204,7 +193,7 @@ export default function AddSnippet() {
 
             {/* Monaco Code Editor */}
             <div
-              className='w-full md:w-2/3 border-black'
+              className='w-full md:w-2/3 border-black rounded-3xl overflow-hidden'
               style={{ height: '480px' }}
             >
               <Editor
@@ -213,7 +202,6 @@ export default function AddSnippet() {
                 value={snippetCode}
                 theme='vs-dark'
                 onChange={handleCodeChange}
-                onMount={handleEditorDidMount}
                 options={{
                   fontSize: 11,
                   automaticLayout: true,
@@ -222,7 +210,7 @@ export default function AddSnippet() {
             </div>
             <button
               type='submit'
-              className='mt-4 w-full md:hidden h-12  text-black rounded-2xl px-4 outline-none bg-green-500'
+              className='mt-4 w-full md:hidden h-12 text-black rounded-2xl px-4 outline-none bg-green-500'
             >
               Submit Snippet
             </button>

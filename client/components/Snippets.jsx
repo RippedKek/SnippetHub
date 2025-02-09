@@ -47,7 +47,7 @@ border-l-[12px]  border-black min-h-[calc(100vh-118px)] overflow-y-scroll'
         </div>
       ) : (
         snippets.map((item, index) => {
-          return <Post key={index} post={item} />
+          return <Post key={index} id={item._id} post={item} self={true} />
         })
       )}
     </div>

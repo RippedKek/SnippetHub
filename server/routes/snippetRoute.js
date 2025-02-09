@@ -10,6 +10,11 @@ snippetRouter.get(
   authMiddleware,
   SnippetController.getUserSnippets
 )
+snippetRouter.delete(
+  '/delete/:id',
+  authMiddleware,
+  SnippetController.deletePost
+)
 snippetRouter.post(
   '/create-snippet',
   authMiddleware,

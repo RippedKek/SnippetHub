@@ -61,6 +61,17 @@ class SnippetController {
       res.status(500).json({ message: err.message })
     }
   }
+
+  static async deletePost(req, res) {
+    try {
+      const id = req.params.id
+      await snippetModel.findByIdAndDelete(id)
+      res.status(200).json({ message: 'Snippet deleted successfully' })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ message: err.message })
+    }
+  }
 }
 
 export default SnippetController

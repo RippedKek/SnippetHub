@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { FaPython } from 'react-icons/fa'
 import { IoLogoJavascript } from 'react-icons/io5'
+import { MdDelete } from 'react-icons/md'
 import {
   FaHtml5,
   FaReact,
@@ -16,6 +17,7 @@ import { SiCplusplus, SiTypescript, SiKotlin, SiRuby } from 'react-icons/si'
 import Modal from 'react-modal'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import axios from 'axios'
 
 function getIcon(language, index) {
   switch (language) {
@@ -48,7 +50,7 @@ function getIcon(language, index) {
   }
 }
 
-const Post = ({ post }) => {
+const Post = ({ post, self, id }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -72,8 +74,29 @@ const Post = ({ post }) => {
       })
   }
 
+  const deletePost = async () => {
+    try {
+      await axios.delete(`http://localhost:8000/snippets/delete/${id}`, {
+        headers: {
+          token: localStorage.getItem('token'),
+        }
+      })
+      window.location.reload()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
-    <div className='w-[323px] h-[380px] mt-6 p-2 rounded-3xl border-[6px] border-black bg-green-500 flex flex-col items-start hover:shadow-xl transition-all duration-150'>
+    <div className='relative w-[323px] h-[380px] mt-6 p-2 rounded-3xl border-[6px] border-black bg-green-500 flex flex-col items-start hover:shadow-xl transition-all duration-150'>
+      {self && (
+        <div
+          onClick={deletePost}
+          className='absolute bottom-2 left-2 p-1 rounded-lg bg-red-700 cursor-pointer'
+        >
+          <MdDelete size={20} color='white' />
+        </div>
+      )}
       <div className='flex items-center justify-between w-full'>
         <h1 className='font-bold text-lg'>{post.name}</h1>
         <button

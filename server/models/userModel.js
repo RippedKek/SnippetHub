@@ -44,6 +44,22 @@ const UserSchema = new Schema({
     type: String,
     default: '#06B6D4',
   },
+  github: {
+    type: String,
+    default: '',
+  },
+  facebook: {
+    type: String,
+    default: '',
+  },
+  instagram: {
+    type: String,
+    default: '',
+  },
+  linkedin: {
+    type: String,
+    default: '',
+  },
   technologies: {
     type: Array,
     default: [],

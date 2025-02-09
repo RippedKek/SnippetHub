@@ -4,7 +4,6 @@ import EditProfileForm from '@/components/EditProfileForm'
 import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import { AppContext } from '@/context/context'
-import axios from 'axios'
 import { useContext, useEffect } from 'react'
 
 const EditProfile = () => {

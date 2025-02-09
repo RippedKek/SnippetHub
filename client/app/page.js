@@ -3,7 +3,7 @@ import Feed from '@/components/Feed'
 import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import axios from 'axios'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 
 import { AppContext } from '@/context/context'
 

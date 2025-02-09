@@ -35,16 +35,24 @@ const Profile = ({ user }) => {
         style={{ backgroundColor: user.color }}
         className='self-center flex items-center justify-evenly my-3 border-[6px] border-black rounded-2xl w-[85%] text-lg font-bold'
       >
-        <span>&lt;/&gt; 52</span>
+        <span>&lt;/&gt; {user.snippets.length}</span>
         <span className='flex items-center gap-2'>
-          <TiPin /> 14
+          <TiPin /> {user.pins.length}
         </span>
       </div>
       <div className='self-center flex items-center justify-evenly w-[85%] mt-10'>
-        <FaGithub size={28} className='cursor-pointer' />
-        <FaLinkedin size={28} className='cursor-pointer' />
-        <FaFacebook size={28} className='cursor-pointer' />
-        <FaInstagram size={28} className='cursor-pointer' />
+        <a href={user.github} target='_blank'>
+          <FaGithub size={28} className='cursor-pointer' />
+        </a>
+        <a href={user.linkedin} target='_blank'>
+          <FaLinkedin size={28} className='cursor-pointer' />
+        </a>
+        <a href={user.facebook} target='_blank'>
+          <FaFacebook size={28} className='cursor-pointer' />
+        </a>
+        <a href={user.instagram} target='_blank'>
+          <FaInstagram size={28} className='cursor-pointer' />
+        </a>
       </div>
     </div>
   )

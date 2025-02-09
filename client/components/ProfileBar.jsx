@@ -3,6 +3,7 @@ import { getInitials } from '@/utils/utils'
 const ProfileBar = ({ fullName }) => {
   const handleLogout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('user')
     window.location.href = '/login'
   }
 

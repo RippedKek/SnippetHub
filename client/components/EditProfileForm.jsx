@@ -159,7 +159,7 @@ const EditProfileForm = () => {
               type='text'
               name='github'
               placeholder='Github'
-              value=''
+              value={tempUser.github}
               onChange={handleInputChange}
               className='mt-1 p-2 w-full rounded-xl outline-none bg-black/20 focus:outline-white focus:outline-2 text-white font-bold text-lg'
             />
@@ -170,7 +170,7 @@ const EditProfileForm = () => {
               type='text'
               name='linkedin'
               placeholder='LinkedIn'
-              value=''
+              value={tempUser.linkedin}
               onChange={handleInputChange}
               className='mt-1 p-2 w-full rounded-xl outline-none bg-black/20 focus:outline-white focus:outline-2 text-white font-bold text-lg'
             />
@@ -181,7 +181,7 @@ const EditProfileForm = () => {
               type='text'
               name='facebook'
               placeholder='Facebook'
-              value=''
+              value={tempUser.facebook}
               onChange={handleInputChange}
               className='mt-1 p-2 w-full rounded-xl outline-none bg-black/20 focus:outline-white focus:outline-2 text-white font-bold text-lg'
             />
@@ -192,7 +192,7 @@ const EditProfileForm = () => {
               type='text'
               name='instagram'
               placeholder='Instagram'
-              value=''
+              value={tempUser.instagram}
               onChange={handleInputChange}
               className='mt-1 p-2 w-full rounded-xl outline-none bg-black/20 focus:outline-white focus:outline-2 text-white font-bold text-lg'
             />

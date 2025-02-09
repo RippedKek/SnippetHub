@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 export const AppContext = createContext()
 
@@ -13,6 +13,10 @@ export const AppProvider = ({ children }) => {
     job: '',
     organization: '',
     color: '',
+    github: '',
+    linkedin: '',
+    facebook: '',
+    instagram: '',
     technologies: [],
     snippets: [],
     pins: [],
@@ -25,6 +29,19 @@ export const AppProvider = ({ children }) => {
   const updateColor = (newColor) => {
     setColor(newColor)
   }
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user')
+    if (storedUser) {
+      setUser(JSON.parse(storedUser))
+    }
+  }, [])
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user))
+    }
+  }, [user])
 
   return (
     <AppContext.Provider

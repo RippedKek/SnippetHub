@@ -4,6 +4,7 @@ import { useContext, useState } from 'react'
 import { FaPython } from 'react-icons/fa'
 import { IoLogoJavascript } from 'react-icons/io5'
 import { MdDelete } from 'react-icons/md'
+import { TiPin } from 'react-icons/ti'
 import {
   FaHtml5,
   FaReact,
@@ -75,6 +76,43 @@ const Post = ({ post, self, id }) => {
       })
   }
 
+  const pinSnippet = async () => {
+    try {
+      const response = await axios.put(
+        'http://localhost:8000/users/pin-snippet',
+        {
+          id,
+        },
+        {
+          headers: {
+            token: localStorage.getItem('token'),
+          },
+        }
+      )
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const unpinSnippet = async () => {
+    try {
+      const response = await axios.put(
+        'http://localhost:8000/users/unpin-snippet',
+        {
+          id,
+        },
+        {
+          headers: {
+            token: localStorage.getItem('token'),
+          },
+        }
+      )
+      window.location.reload()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const deletePost = async () => {
     try {
       await axios.delete(`http://localhost:8000/snippets/delete/${id}`, {
@@ -90,12 +128,19 @@ const Post = ({ post, self, id }) => {
 
   return (
     <div className='relative w-[323px] h-[380px] mt-6 p-2 rounded-3xl border-[6px] border-black bg-green-500 flex flex-col items-start hover:shadow-xl transition-all duration-150'>
-      {self && (
+      {self ? (
         <div
           onClick={deletePost}
           className='absolute bottom-2 left-2 p-1 rounded-lg bg-red-700 cursor-pointer'
         >
           <MdDelete size={20} color='white' />
+        </div>
+      ) : (
+        <div
+          onClick={pinSnippet}
+          className='absolute bottom-2 left-2 p-1 rounded-lg bg-blue-600 cursor-pointer'
+        >
+          <TiPin size={20} color='white' />
         </div>
       )}
       <div className='flex items-center justify-between w-full'>

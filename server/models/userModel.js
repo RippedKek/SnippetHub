@@ -18,6 +18,10 @@ const UserSchema = new Schema({
     unique: true,
     match: [/.+\@.+\..+/, 'Please enter a valid email address'],
   },
+  pinned: {
+    type: Number,
+    default: 0,
+  },
   password: {
     type: String,
     required: true,

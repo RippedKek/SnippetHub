@@ -17,6 +17,7 @@ export const AppProvider = ({ children }) => {
     linkedin: '',
     facebook: '',
     instagram: '',
+    pinned: 0,
     technologies: [],
     snippets: [],
     pins: [],

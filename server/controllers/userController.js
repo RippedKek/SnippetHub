@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import userModel from '../models/userModel.js'
+import snippetModel from '../models/snippetModel.js'
 
 class UserController {
   static async getUser(req, res) {
@@ -73,6 +74,51 @@ class UserController {
       })
 
       res.status(200).json({ token })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ message: err.message })
+    }
+  }
+
+  static async pinSnippet(req, res) {
+    try {
+      const id = req.body.userId
+      const snippetId = req.body.id
+      const user = await userModel.findById(id)
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+      if (user.pins.includes(snippetId)) {
+        return res.status(400).json({ message: 'Snippet already pinned' })
+      }
+      user.pins.push(snippetId)
+      await user.save()
+
+      const snippet = await snippetModel.findById(snippetId)
+      const devUser = await userModel.findById(snippet.userId)
+      if (!devUser) {
+        return res.status(404).json({ message: 'Developer not found' })
+      }
+      devUser.pinned += 1
+      await devUser.save()
+      res.status(200).json({ message: 'Snippet pinned successfully' })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ message: err.message })
+    }
+  }
+
+  static async unpinSnippet(req, res) {
+    try {
+      const id = req.body.userId
+      const snippetId = req.body.id
+      const user = await userModel.findById(id)
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+      user.pins = user.pins.filter((pin) => pin.toString() !== snippetId)
+      await user.save()
+      res.status(200).json({ message: 'Snippet unpinned successfully' })
     } catch (err) {
       console.log(err)
       res.status(500).json({ message: err.message })

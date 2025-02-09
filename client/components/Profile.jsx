@@ -37,7 +37,7 @@ const Profile = ({ user }) => {
       >
         <span>&lt;/&gt; {user.snippets.length}</span>
         <span className='flex items-center gap-2'>
-          <TiPin /> {user.pins.length}
+          <TiPin /> {user.pinned}
         </span>
       </div>
       <div className='self-center flex items-center justify-evenly w-[85%] mt-10'>

@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import './globals.css'
 import Sidebar from '@/components/Sidebar'
+import ColorProviderWrapper from '@/context/ColorProviderWrapper'
 
 export const metadata = {
   title: 'SnippetHub',
@@ -10,7 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        <ColorProviderWrapper>{children}</ColorProviderWrapper>
+      </body>
     </html>
   )
 }

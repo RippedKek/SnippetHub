@@ -1,15 +1,17 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { FaFacebook } from 'react-icons/fa'
 import { FaInstagram } from 'react-icons/fa'
 import { FaLinkedin } from 'react-icons/fa'
 import { TwitterPicker } from 'react-color'
 
+import { ColorContext } from '@/context/context'
+
 const EditProfileForm = ({ user }) => {
   const [tempUser, setTempUser] = useState(user)
-  const [textColor, setTextColor] = useState('#fff')
+  const { color, setColor } = useContext(ColorContext)
 
   useEffect(() => {
     setTempUser(user)
@@ -23,7 +25,7 @@ const EditProfileForm = ({ user }) => {
   }
 
   const handleColorChange = (color, event) => {
-    setTextColor(color.hex)
+    setColor(color.hex)
   }
 
   return (

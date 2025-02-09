@@ -7,7 +7,7 @@ export default function authMiddleware(req, res, next) {
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    req.body.user = decoded.user
+    req.body.userId = decoded.id
     next()
   } catch (err) {
     console.log(err)

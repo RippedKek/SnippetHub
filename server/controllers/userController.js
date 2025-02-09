@@ -5,7 +5,30 @@ import userModel from '../models/userModel.js'
 class UserController {
   static async getUser(req, res) {
     try {
-      const user = req.body.user
+      const id = req.body.userId
+      const user = await userModel.findById(id)
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+      res.status(200).json({ user })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ message: err.message })
+    }
+  }
+
+  static async editUser(req, res) {
+    try {
+      const { userId, ...updateData } = req.body
+      const user = await userModel.findById(userId)
+
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+
+      Object.assign(user, updateData)
+      await user.save()
+
       res.status(200).json({ user })
     } catch (err) {
       console.log(err)
@@ -44,7 +67,7 @@ class UserController {
         return res.status(401).json({ message: 'Invalid credentials' })
       }
 
-      const token = jwt.sign({ user }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: '1d',
       })
 

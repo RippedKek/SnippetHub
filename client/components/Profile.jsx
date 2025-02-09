@@ -1,3 +1,5 @@
+'use client'
+
 import Skills from './Skills'
 import { TiPin } from 'react-icons/ti'
 import { FaGithub } from 'react-icons/fa'
@@ -6,11 +8,19 @@ import { FaFacebook } from 'react-icons/fa'
 import { FaInstagram } from 'react-icons/fa'
 import { getInitials } from '@/utils/utils'
 
+import { ColorContext } from '@/context/context'
+import { useContext } from 'react'
+
 const Profile = ({ user }) => {
+  const { color } = useContext(ColorContext)
+
   return (
     <div className='flex flex-col sticky top-[118px] w-[80%] max-h-[calc(100vh-118px)] border-x-[12px] border-b-[12px] border-black'>
       <div className='h-[30%] relative'>
-        <div className='h-[60%] w-full bg-profile border-b-[12px] border-black'>
+        <div
+          style={{ backgroundColor: color }}
+          className='h-[60%] w-full border-b-[12px] border-black'
+        >
           {' '}
         </div>
         <div className='w-24 h-24 rounded-full bg-black absolute left-[calc(50%-48px)] top-[25%] text-white font-bold text-5xl flex items-center justify-center'>
@@ -26,7 +36,10 @@ const Profile = ({ user }) => {
           {user.city}, {user.country}.
         </p>
       </div>
-      <div className='self-center flex items-center justify-evenly my-3 border-[6px] border-black rounded-2xl bg-profile w-[85%] text-lg font-bold'>
+      <div
+        style={{ backgroundColor: color }}
+        className='self-center flex items-center justify-evenly my-3 border-[6px] border-black rounded-2xl w-[85%] text-lg font-bold'
+      >
         <span>&lt;/&gt; 52</span>
         <span className='flex items-center gap-2'>
           <TiPin /> 14

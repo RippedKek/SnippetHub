@@ -19,7 +19,8 @@ class UserController {
 
   static async editUser(req, res) {
     try {
-      const { userId, ...updateData } = req.body
+      const userId = req.body.userId
+      const updateData = req.body.tempUser
       const user = await userModel.findById(userId)
 
       if (!user) {

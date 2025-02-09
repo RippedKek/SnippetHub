@@ -22,6 +22,9 @@ export default function AddSnippet() {
     job: '',
     country: '',
     technologies: [],
+    snippets: [],
+    pins: [],
+    color: '',
   })
 
   const handleChange = (e) => {

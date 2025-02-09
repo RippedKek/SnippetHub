@@ -40,11 +40,19 @@ const UserSchema = new Schema({
     required: true,
     default: 'Unemployed',
   },
+  color: {
+    type: String,
+    default: '#06B6D4',
+  },
   technologies: {
     type: Array,
     default: [],
   },
   snippets: {
+    type: Array,
+    default: [],
+  },
+  pins: {
     type: Array,
     default: [],
   },

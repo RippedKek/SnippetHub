@@ -16,6 +16,9 @@ const EditProfile = () => {
     job: '',
     country: '',
     technologies: [],
+    snippets: [],
+    pins: [],
+    color: '',
   })
 
   useEffect(() => {

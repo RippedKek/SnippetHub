@@ -10,7 +10,7 @@ import { getInitials } from '@/utils/utils'
 
 const Profile = ({ user }) => {
   return (
-    <div className='flex flex-col sticky top-[118px] w-[80%] max-h-[calc(100vh-118px)] border-x-[12px] border-b-[12px] border-black'>
+    <div className='hidden md:flex flex-col sticky top-[118px] w-[80%] max-h-[calc(100vh-118px)] border-x-[12px] border-b-[12px] border-black'>
       <div className='h-[30%] relative'>
         <div
           style={{ backgroundColor: user.color }}

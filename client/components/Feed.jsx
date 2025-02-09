@@ -29,7 +29,7 @@ const Feed = () => {
 
   return (
     <div
-      className='w-[70%] pb-8 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 grid grid-cols-1 lg:grid-cols-2 md:w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500
+      className='md:w-[70%] w-[90%] pb-8 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 grid grid-cols-1 xl:grid-cols-2 place-items-center bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500
 border-l-[12px]  border-black min-h-[calc(100vh-118px)] overflow-y-scroll'
     >
       {loading ? (

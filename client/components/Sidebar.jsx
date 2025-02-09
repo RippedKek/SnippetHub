@@ -3,7 +3,7 @@ import Profile from './Profile'
 
 const Sidebar = ({ user }) => {
   return (
-    <div className='hidden relative md:flex w-[30%]'>
+    <div className='relative flex w-[10%] md:w-[30%]'>
       <ControlBar />
       <Profile user={user} />
     </div>

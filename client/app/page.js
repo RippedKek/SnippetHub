@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <>
       <Navbar fullName={user.name} />
-      <div className='md:flex justify-between relative'>
+      <div className='flex justify-between relative'>
         <Feed />
         <Sidebar user={user} />
       </div>

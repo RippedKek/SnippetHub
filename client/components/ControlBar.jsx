@@ -15,7 +15,7 @@ const ControlBar = () => {
   }
 
   return (
-    <div className='w-[20%] sticky top-[118px] flex flex-col items-center gap-5 max-h-[calc(100vh-118px)] pt-5 bg-cyan-500 text-white'>
+    <div className='w-full md:w-[20%] border-r-[12px] border-black md:border-0 sticky top-[118px] flex flex-col items-center gap-5 max-h-[calc(100vh-118px)] pt-5 bg-cyan-500 text-white'>
       <MdMenu size={32} className='cursor-pointer menu' onClick={toggleMenu} />
       <div
         className={`flex flex-col justify-start items-center gap-5 transition-transform duration-300 ease-in-out transform ${

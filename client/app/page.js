@@ -3,19 +3,12 @@ import Feed from '@/components/Feed'
 import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+
+import { AppContext } from '@/context/context'
 
 export default function Home() {
-  const [user, setUser] = useState({
-    name: '',
-    username: '',
-    email: '',
-    city: '',
-    country: '',
-    job: '',
-    country: '',
-    technologies: [],
-  })
+  const { user, setUser } = useContext(AppContext)
 
   useEffect(() => {
     const fetchUser = async () => {

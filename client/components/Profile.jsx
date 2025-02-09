@@ -8,17 +8,12 @@ import { FaFacebook } from 'react-icons/fa'
 import { FaInstagram } from 'react-icons/fa'
 import { getInitials } from '@/utils/utils'
 
-import { ColorContext } from '@/context/context'
-import { useContext } from 'react'
-
 const Profile = ({ user }) => {
-  const { color } = useContext(ColorContext)
-
   return (
     <div className='flex flex-col sticky top-[118px] w-[80%] max-h-[calc(100vh-118px)] border-x-[12px] border-b-[12px] border-black'>
       <div className='h-[30%] relative'>
         <div
-          style={{ backgroundColor: color }}
+          style={{ backgroundColor: user.color }}
           className='h-[60%] w-full border-b-[12px] border-black'
         >
           {' '}
@@ -28,7 +23,7 @@ const Profile = ({ user }) => {
         </div>
       </div>
       <h1 className='self-center font-bold'>@{user.username}</h1>
-      <Skills />
+      <Skills color={user.color} />
       <div className='self-start px-4 text-sm font-bold'>
         <p>{user.job},</p>
         <p>{user.organization},</p>
@@ -37,7 +32,7 @@ const Profile = ({ user }) => {
         </p>
       </div>
       <div
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: user.color }}
         className='self-center flex items-center justify-evenly my-3 border-[6px] border-black rounded-2xl w-[85%] text-lg font-bold'
       >
         <span>&lt;/&gt; 52</span>

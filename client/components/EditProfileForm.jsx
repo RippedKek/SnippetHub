@@ -7,13 +7,13 @@ import { FaInstagram } from 'react-icons/fa'
 import { FaLinkedin } from 'react-icons/fa'
 import { TwitterPicker } from 'react-color'
 
-import { ColorContext } from '@/context/context'
 import axios from 'axios'
 import { ToastContainer, toast, Bounce } from 'react-toastify'
+import { AppContext } from '@/context/context'
 
-const EditProfileForm = ({ user }) => {
+const EditProfileForm = () => {
+  const { user, setUser } = useContext(AppContext)
   const [tempUser, setTempUser] = useState(user)
-  const { color, setColor } = useContext(ColorContext)
 
   useEffect(() => {
     setTempUser(user)
@@ -27,7 +27,7 @@ const EditProfileForm = ({ user }) => {
   }
 
   const handleColorChange = (color, event) => {
-    setColor(color.hex)
+    setUser({ color: color.hex })
   }
 
   const handleSubmit = async (e) => {
@@ -44,6 +44,7 @@ const EditProfileForm = ({ user }) => {
           },
         }
       )
+      setUser(tempUser)
       toast.success('Profile edited successfully!', {
         position: 'top-center',
         autoClose: 5000,

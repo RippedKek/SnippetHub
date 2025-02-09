@@ -1,11 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import { ToastContainer, toast, Bounce } from 'react-toastify'
 import axios from 'axios'
 import Editor from '@monaco-editor/react'
 import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
+import { AppContext } from '@/context/context'
 
 export default function AddSnippet() {
   const [snippetTitle, setSnippetTitle] = useState('')
@@ -13,19 +14,7 @@ export default function AddSnippet() {
   const [snippetLanguages, setSnippetLanguages] = useState([])
   const [baseLanguage, setBaseLanguage] = useState('python')
   const [snippetCode, setSnippetCode] = useState('Code here...')
-  const [user, setUser] = useState({
-    name: '',
-    username: '',
-    email: '',
-    city: '',
-    country: '',
-    job: '',
-    country: '',
-    technologies: [],
-    snippets: [],
-    pins: [],
-    color: '',
-  })
+  const { user } = useContext(AppContext)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -90,26 +79,6 @@ export default function AddSnippet() {
       snippetCode,
     })
   }
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          'http://localhost:8000/users/get-user',
-          {
-            headers: {
-              token: localStorage.getItem('token'),
-            },
-          }
-        )
-        setUser(response.data.user)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-
-    fetchUser()
-  }, [])
 
   return (
     <>

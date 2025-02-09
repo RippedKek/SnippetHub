@@ -5,12 +5,7 @@ import { FaPython } from 'react-icons/fa'
 import { IoLogoJavascript } from 'react-icons/io5'
 import { SiExpress } from 'react-icons/si'
 
-import { ColorContext } from '@/context/context'
-import { useContext } from 'react'
-
-const Skills = () => {
-  const { color } = useContext(ColorContext)
-
+const Skills = ({ color }) => {
   return (
     <div
       style={{ backgroundColor: color }}

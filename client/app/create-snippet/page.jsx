@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { ToastContainer, toast, Bounce } from 'react-toastify'
 import axios from 'axios'
 import Editor from '@monaco-editor/react'
@@ -15,6 +15,12 @@ export default function AddSnippet() {
   const [baseLanguage, setBaseLanguage] = useState('python')
   const [snippetCode, setSnippetCode] = useState('Code here...')
   const { user } = useContext(AppContext)
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      window.location.href = '/login'
+    }
+  }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target

@@ -26,8 +26,11 @@ export default function Home() {
         console.log(err)
       }
     }
-
-    fetchUser()
+    if (localStorage.getItem('token')) {
+      fetchUser()
+    } else {
+      window.location.href = '/login'
+    }
   }, [])
 
   return (

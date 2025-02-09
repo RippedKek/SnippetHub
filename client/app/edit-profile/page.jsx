@@ -10,6 +10,12 @@ import { useContext, useEffect } from 'react'
 const EditProfile = () => {
   const { user } = useContext(AppContext)
 
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      window.location.href = '/login'
+    }
+  }, [])
+
   return (
     <>
       <Navbar fullName={user.name} />

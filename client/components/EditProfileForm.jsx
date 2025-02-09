@@ -76,8 +76,11 @@ const EditProfileForm = () => {
         theme='colored'
         transition={Bounce}
       />
-      <form onSubmit={handleSubmit} className='flex w-full'>
-        <div className='w-1/2 pr-5'>
+      <form
+        onSubmit={handleSubmit}
+        className='flex flex-col md:flex-row w-full'
+      >
+        <div className='w-full md:w-1/2 pr-5'>
           <p className='text-2xl text-white font-bold'>Name</p>
           <input
             type='text'
@@ -198,7 +201,7 @@ const EditProfileForm = () => {
             />
           </div>
         </div>
-        <div className='w-1/2 pl-5 flex flex-col items-center'>
+        <div className='w-full md:w-1/2 mt-5 md:mt-0 md:pl-5 flex flex-col items-start md:items-center'>
           <div className='flex flex-col items-start gap-2'>
             <p className='text-2xl text-white font-bold'>Profile Color</p>
             <TwitterPicker onChangeComplete={handleColorChange} />

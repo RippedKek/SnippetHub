@@ -12,7 +12,7 @@ export default {
         foreground: 'var(--foreground)',
         primary: '#DD6BCA',
         body: '#45C9E3',
-        profile: '#E80808',
+        profile: '#06B6D4',
       },
       fontFamily: {
         code: 'Fira Code',

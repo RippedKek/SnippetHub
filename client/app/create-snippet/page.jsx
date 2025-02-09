@@ -125,13 +125,13 @@ export default function AddSnippet() {
       />
       <Navbar fullName={user.name} />
       <div className='md:flex justify-between relative'>
-        <div className='w-[70%] min-h-[calc(100vh-118px)] border-l-[12px] border-black bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 border-t-0 pb-8 px-4 md:px-8 lg:px-16'>
+        <div className='w-[70%] min-h-[calc(100vh-118px)] border-l-[12px] border-black bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 border-t-0 pb-8 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64'>
           <h1 className='text-3xl font-bold mt-4 text-black'>Add a Snippet</h1>
           <form
             onSubmit={handleSubmit}
             className='flex flex-col md:flex-row items-start justify-between gap-6 mt-4'
           >
-            <div className='flex flex-col w-full md:w-1/3'>
+            <div className='flex flex-col w-full md:w-[40%]'>
               <input
                 type='text'
                 name='title'
@@ -193,7 +193,7 @@ export default function AddSnippet() {
 
             {/* Monaco Code Editor */}
             <div
-              className='w-full md:w-2/3 border-black rounded-3xl overflow-hidden'
+              className='w-full md:w-[60%] border-black rounded-3xl overflow-hidden'
               style={{ height: '480px' }}
             >
               <Editor

@@ -65,7 +65,15 @@ class SnippetController {
   static async deletePost(req, res) {
     try {
       const id = req.params.id
+      const userId = req.body.userId
+
       await snippetModel.findByIdAndDelete(id)
+
+      const user = await userModel.findById(userId)
+      user.snippets = user.snippets.filter(
+        (snippet) => snippet.toString() !== id
+      )
+      await user.save()
       res.status(200).json({ message: 'Snippet deleted successfully' })
     } catch (err) {
       console.log(err)

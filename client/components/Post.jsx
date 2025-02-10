@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { FaPython } from 'react-icons/fa'
 import { IoLogoJavascript } from 'react-icons/io5'
 import { MdDelete } from 'react-icons/md'
@@ -19,7 +19,6 @@ import Modal from 'react-modal'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import axios from 'axios'
-import { AppContext } from '@/context/context'
 
 function getIcon(language, index) {
   switch (language) {

@@ -6,9 +6,10 @@ import axios from 'axios'
 import { useContext, useEffect } from 'react'
 
 import { AppContext } from '@/context/context'
+import LoadingScreen from '@/components/LoadingScreen'
 
 export default function Home() {
-  const { user, setUser } = useContext(AppContext)
+  const { user, setUser, loading, setLoading } = useContext(AppContext)
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,6 +23,7 @@ export default function Home() {
           }
         )
         setUser(response.data.user)
+        setLoading(false)
       } catch (err) {
         console.log(err)
       }
@@ -31,9 +33,11 @@ export default function Home() {
     } else {
       window.location.href = '/login'
     }
-  }, [])
+  }, [setUser, setLoading])
 
-  return (
+  return loading ? (
+    <LoadingScreen />
+  ) : (
     <>
       <Navbar fullName={user.name} />
       <div className='flex justify-between relative'>

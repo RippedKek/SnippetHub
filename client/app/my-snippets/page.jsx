@@ -8,7 +8,7 @@ import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 
 const MySnippets = () => {
-  const { user } = useContext(AppContext)
+  const { user, loading, setLoading } = useContext(AppContext)
 
   useEffect(() => {
     if (!localStorage.getItem('token')) {

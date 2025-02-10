@@ -4,6 +4,7 @@ export const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
   const [color, setColor] = useState('#06B6D4')
+  const [loading, setLoading] = useState(true)
   const [user, setUser] = useState({
     name: '',
     username: '',
@@ -51,6 +52,8 @@ export const AppProvider = ({ children }) => {
         setColor: updateColor,
         user,
         setUser: updateUser,
+        loading,
+        setLoading,
       }}
     >
       {children}

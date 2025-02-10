@@ -15,6 +15,7 @@ import {
   FaGitAlt,
   FaGithub,
   FaAws,
+  FaJava,
 } from 'react-icons/fa'
 import {
   SiTailwindcss,
@@ -55,6 +56,8 @@ const techIcons = [
   { name: 'docker', icon: <FaDocker size={30} /> },
   { name: 'github', icon: <FaGithub size={30} /> },
   { name: 'express', icon: <SiExpress size={30} /> },
+  { name: 'java', icon: <FaJava size={30} /> },
+  { name: 'html', icon: <FaHtml5 size={30} /> },
 ]
 
 const EditProfileForm = () => {

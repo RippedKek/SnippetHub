@@ -14,6 +14,7 @@ import {
   FaGitAlt,
   FaGithub,
   FaAws,
+  FaJava,
 } from 'react-icons/fa'
 import {
   SiTailwindcss,
@@ -50,19 +51,23 @@ const techIcons = [
   { name: 'docker', icon: <FaDocker size={30} /> },
   { name: 'github', icon: <FaGithub size={30} /> },
   { name: 'express', icon: <SiExpress size={30} /> },
+  { name: 'java', icon: <FaJava size={30} /> },
+  { name: 'html', icon: <FaHtml5 size={30} /> },
 ]
 
 const Skills = ({ color, tech }) => {
   return (
     <div
       style={{ backgroundColor: color }}
-      className='w-[85%] my-3 flex border-[6px] border-black rounded-2xl px-1 py-2 self-center items-center justify-between'
+      className='w-[85%] my-3 flex border-[6px] border-black rounded-2xl px-1 py-2 self-center items-center justify-evenly'
     >
-      {techIcons.map((icon) => {
-        if (tech.includes(icon.name)) {
-          return icon.icon
-        }
-      })}
+      {tech.length > 0 ? (
+        techIcons
+          .filter((icon) => tech.includes(icon.name))
+          .map((icon) => <span key={icon.id}>{icon.icon}</span>)
+      ) : (
+        <p className='text-lg font-bold text-center'>No skills selected yet</p>
+      )}
     </div>
   )
 }

@@ -2,6 +2,11 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import userModel from '../models/userModel.js'
 import snippetModel from '../models/snippetModel.js'
+import crypto from 'crypto'
+import {
+  transporter,
+  generateResetEmailHTML,
+} from '../config/nodemailerConfig.js'
 
 class UserController {
   static async getUser(req, res) {
@@ -122,6 +127,40 @@ class UserController {
     } catch (err) {
       console.log(err)
       res.status(500).json({ message: err.message })
+    }
+  }
+
+  static async sendVerificationEmail(req, res) {
+    try {
+      const email = req.body.email
+      const user = await userModel.findOne({ email })
+      if (!user) {
+        return res.status(404).json({ message: 'User does not exist' })
+      }
+
+      const token = crypto.randomBytes(32).toString('hex')
+      const expires = Date.now() + 3600000
+
+      user.resetToken = {
+        token: token,
+        expires: expires,
+      }
+
+      await user.save()
+
+      const mailOptions = {
+        from: process.env.NODEMAILER_EMAIL,
+        to: user.email,
+        subject: 'Password Reset Verification',
+        html: generateResetEmailHTML(user.name, token),
+      }
+
+      await transporter.sendMail(mailOptions)
+
+      res.status(200).json({ message: 'Verification email sent' })
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({ message: 'Server error' })
     }
   }
 }

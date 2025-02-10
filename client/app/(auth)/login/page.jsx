@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [title, setTitle] = useState('')
   const [loginCred, setLoginCred] = useState({ email: '', password: '' })
   const [isConcealed, setIsConcealed] = useState(true)
-  const [error, setError] = useState('') // Error state for wrong credentials
+  const [error, setError] = useState('')
   const fullTitle = 'Log into <SnippetHub/>'
 
   useEffect(() => {
@@ -36,8 +36,8 @@ const LoginPage = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault() // Prevent the default form submission behavior
-    setError('') // Clear any previous error messages
+    e.preventDefault()
+    setError('')
     try {
       const response = await axios.post(
         'http://localhost:8000/users/login',
@@ -111,6 +111,12 @@ const LoginPage = () => {
         Don't have an account?{' '}
         <Link href='/register' className='text-green-500'>
           Register here
+        </Link>
+      </h3>
+      <h3 className='text-sm text-white mt-3'>
+        <Link href='/forgot-password' className='text-green-500'>
+          {' '}
+          Forgot password?
         </Link>
       </h3>
     </div>

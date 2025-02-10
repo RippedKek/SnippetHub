@@ -26,6 +26,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  resetToken: {
+    token: String,
+    expires: Date,
+  },
   city: {
     type: String,
     required: true,

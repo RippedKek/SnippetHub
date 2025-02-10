@@ -1,22 +1,72 @@
 'use client'
 
 import { useState, useEffect, useContext } from 'react'
-import { FaGithub } from 'react-icons/fa'
-import { FaFacebook } from 'react-icons/fa'
-import { FaInstagram } from 'react-icons/fa'
-import { FaLinkedin } from 'react-icons/fa'
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaReact,
+  FaJs,
+  FaPhp,
+  FaHtml5,
+  FaCss3Alt,
+  FaNodeJs,
+  FaDocker,
+  FaGitAlt,
+  FaGithub,
+  FaAws,
+} from 'react-icons/fa'
+import {
+  SiTailwindcss,
+  SiDjango,
+  SiNextdotjs,
+  SiFlutter,
+  SiFirebase,
+  SiMongodb,
+  SiPython,
+  SiTypescript,
+  SiMysql,
+  SiExpress,
+  SiPostgresql,
+} from 'react-icons/si'
 import { TwitterPicker } from 'react-color'
-
 import axios from 'axios'
 import { ToastContainer, toast, Bounce } from 'react-toastify'
 import { AppContext } from '@/context/context'
 
+const techIcons = [
+  { name: 'python', icon: <SiPython size={30} /> },
+  { name: 'css', icon: <FaCss3Alt size={30} /> },
+  { name: 'javascript', icon: <FaJs size={30} /> },
+  { name: 'react', icon: <FaReact size={30} /> },
+  { name: 'nodejs', icon: <FaNodeJs size={30} /> },
+  { name: 'php', icon: <FaPhp size={30} /> },
+  { name: 'aws', icon: <FaAws size={30} /> },
+  { name: 'django', icon: <SiDjango size={30} /> },
+  { name: 'flutter', icon: <SiFlutter size={30} /> },
+  { name: 'firebase', icon: <SiFirebase size={30} /> },
+  { name: 'postgresql', icon: <SiPostgresql size={30} /> },
+  { name: 'mongodb', icon: <SiMongodb size={30} /> },
+  { name: 'mysql', icon: <SiMysql size={30} /> },
+  { name: 'nextjs', icon: <SiNextdotjs size={30} /> },
+  { name: 'tailwindcss', icon: <SiTailwindcss size={30} /> },
+  { name: 'typescript', icon: <SiTypescript size={30} /> },
+  { name: 'git', icon: <FaGitAlt size={30} /> },
+  { name: 'docker', icon: <FaDocker size={30} /> },
+  { name: 'github', icon: <FaGithub size={30} /> },
+  { name: 'express', icon: <SiExpress size={30} /> },
+]
+
 const EditProfileForm = () => {
   const { user, setUser } = useContext(AppContext)
   const [tempUser, setTempUser] = useState(user)
+  const [selectedTechnologies, setSelectedTechnologies] = useState(
+    user.technologies || []
+  )
 
   useEffect(() => {
     setTempUser(user)
+    setSelectedTechnologies(user.technologies || [])
   }, [user])
 
   const handleInputChange = (e) => {
@@ -28,6 +78,13 @@ const EditProfileForm = () => {
 
   const handleColorChange = (color, event) => {
     setUser({ color: color.hex })
+  }
+  const toggleTechnology = (techId) => {
+    if (selectedTechnologies.includes(techId)) {
+      setSelectedTechnologies((prev) => prev.filter((tech) => tech !== techId))
+    } else if (selectedTechnologies.length < 4) {
+      setSelectedTechnologies((prev) => [...prev, techId])
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -44,7 +101,7 @@ const EditProfileForm = () => {
           },
         }
       )
-      setUser(tempUser)
+      setUser({ ...tempUser, technologies: selectedTechnologies })
       toast.success('Profile edited successfully!', {
         position: 'top-center',
         autoClose: 5000,
@@ -201,10 +258,31 @@ const EditProfileForm = () => {
             />
           </div>
         </div>
-        <div className='w-full md:w-1/2 mt-5 md:mt-0 md:pl-5 flex flex-col items-start md:items-center'>
+        <div className='w-full md:w-1/2 gap-4 mt-5 md:mt-0 md:pl-5 flex flex-col items-start md:items-center'>
           <div className='flex flex-col items-start gap-2'>
             <p className='text-2xl text-white font-bold'>Profile Color</p>
             <TwitterPicker onChangeComplete={handleColorChange} />
+          </div>
+          <div className='w-full flex flex-col gap-2 md:pl-5 items-start'>
+            <p className='text-2xl text-white font-bold'>Technologies</p>
+            <div className='w-full bg-white border-[3px] border-black rounded-xl p-4 grid grid-cols-6 place-items-center gap-y-2'>
+              {techIcons.map((tech) => (
+                <div
+                  key={tech.name}
+                  className={`relative cursor-pointer p-2 rounded-full ${
+                    selectedTechnologies.includes(tech.name)
+                      ? 'bg-blue-400'
+                      : 'hover:bg-gray-300'
+                  }`}
+                  onClick={() => toggleTechnology(tech.name)}
+                >
+                  {tech.icon}
+                  {selectedTechnologies.includes(tech.name) && (
+                    <div className='absolute top-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white'></div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
           <button
             type='submit'

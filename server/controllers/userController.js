@@ -28,6 +28,8 @@ class UserController {
         return res.status(404).json({ message: 'User not found' })
       }
 
+      console.log(user)
+
       Object.assign(user, updateData)
       await user.save()
 

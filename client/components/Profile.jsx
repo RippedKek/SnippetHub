@@ -23,7 +23,7 @@ const Profile = ({ user }) => {
         </div>
       </div>
       <h1 className='self-center font-bold'>@{user.username}</h1>
-      <Skills color={user.color} />
+      <Skills tech={user.technologies} color={user.color} />
       <div className='self-start px-4 text-sm font-bold'>
         <p>{user.job},</p>
         <p>{user.organization},</p>

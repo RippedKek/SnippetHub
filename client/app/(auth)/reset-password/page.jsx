@@ -41,7 +41,7 @@ const ResetPassword = () => {
     }
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const password = e.target.password.value
     const confirmPassword = e.target.confirmPassword.value
@@ -51,9 +51,15 @@ const ResetPassword = () => {
       return
     }
 
-    console.log('Password:', password)
-    console.log('Confirm Password:', confirmPassword)
-    // Add the logic to update password
+    try {
+      const response = await axios.post(
+        'http://localhost:8000/users/reset-password',
+        { token, password }
+      )
+      window.location.href = '/login'
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   if (loading) {

@@ -46,7 +46,7 @@ const ForgotPassword = () => {
             onClick={handleSendCode}
             className='w-full bg-pink-500 p-3 rounded-md text-white font-bold hover:bg-pink-600 transition-all'
           >
-            SEND CODE
+            SEND LINK
           </button>
         ) : (
           <>

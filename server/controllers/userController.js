@@ -138,6 +138,12 @@ class UserController {
         return res.status(404).json({ message: 'User does not exist' })
       }
 
+      if (user.resetToken.token) {
+        return res
+          .status(400)
+          .json({ message: 'Verification email already sent' })
+      }
+
       const token = crypto.randomBytes(32).toString('hex')
       const expires = Date.now() + 3600000
 
@@ -160,6 +166,59 @@ class UserController {
       res.status(200).json({ message: 'Verification email sent' })
     } catch (error) {
       console.error(error)
+      res.status(500).json({ message: 'Server error' })
+    }
+  }
+
+  static async verifyToken(req, res) {
+    try {
+      const token = req.body.token
+      const user = await userModel.findOne({ 'resetToken.token': token })
+      if (!user) {
+        return res
+          .status(404)
+          .json({ message: 'User does not exist', success: false })
+      }
+
+      if (Date.now() > user.resetToken.expires) {
+        return res
+          .status(400)
+          .json({ message: 'Token has expired', success: false })
+      }
+
+      res
+        .status(200)
+        .json({ message: 'Token verified successfully', success: true })
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({ message: 'Server error' })
+    }
+  }
+
+  static async resetPassword(req, res) {
+    try {
+      const user = await userModel.findOne({
+        'resetToken.token': req.body.token,
+      })
+      const password = req.body.password
+      if (!user) {
+        return res
+          .status(404)
+          .json({ message: 'User does not exist', success: false })
+      }
+      const salt = await bcrypt.genSalt(Number(process.env.SALT_ROUNDS))
+      const hashedPassword = await bcrypt.hash(password, salt)
+      user.password = hashedPassword
+
+      user.resetToken = null
+
+      await user.save()
+
+      res
+        .status(200)
+        .json({ message: 'Password reset successfully', success: true })
+    } catch (err) {
+      console.error(err)
       res.status(500).json({ message: 'Server error' })
     }
   }

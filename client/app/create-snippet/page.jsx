@@ -7,6 +7,7 @@ import Editor from '@monaco-editor/react'
 import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import { AppContext } from '@/context/context'
+import LoadingScreen from '@/components/LoadingScreen'
 
 export default function AddSnippet() {
   const [snippetTitle, setSnippetTitle] = useState('')
@@ -14,11 +15,12 @@ export default function AddSnippet() {
   const [snippetLanguages, setSnippetLanguages] = useState([])
   const [baseLanguage, setBaseLanguage] = useState('python')
   const [snippetCode, setSnippetCode] = useState('Code here...')
-  const { user } = useContext(AppContext)
+  const { user, loading, setLoading } = useContext(AppContext)
 
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       window.location.href = '/login'
+      setLoading(false)
     }
   }, [])
 
@@ -86,7 +88,9 @@ export default function AddSnippet() {
     })
   }
 
-  return (
+  return loading ? (
+    <LoadingScreen />
+  ) : (
     <>
       <ToastContainer
         position='top-center'

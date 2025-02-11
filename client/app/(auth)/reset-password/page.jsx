@@ -1,10 +1,30 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const ResetPassword = () => {
   const [token, setToken] = useState(null)
-  const [isTokenValid, setIsTokenValid] = useState(false)
+  const [invalid, setInvalid] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  const verifyToken = async (token) => {
+    try {
+      const response = await axios.post(
+        'http://localhost:8000/users/verify-token',
+        { token }
+      )
+      console.log(response.data)
+      if (!response.data.success) {
+        setInvalid(true)
+      }
+    } catch (err) {
+      console.error(err)
+      setInvalid(true)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -13,8 +33,10 @@ const ResetPassword = () => {
 
       if (token) {
         setToken(token)
-        setIsTokenValid(true)
-        console.log('Token:', token)
+        verifyToken(token)
+      } else {
+        setInvalid(true)
+        setLoading(false)
       }
     }
   }, [])
@@ -31,12 +53,21 @@ const ResetPassword = () => {
 
     console.log('Password:', password)
     console.log('Confirm Password:', confirmPassword)
+    // Add the logic to update password
+  }
+
+  if (loading) {
+    return (
+      <div className='w-full h-screen flex items-center justify-center bg-gray-900'>
+        <p className='text-white'>Verifying token...</p>
+      </div>
+    )
   }
 
   return (
     <div className='w-full h-screen flex items-center justify-center bg-gray-900'>
-      {!isTokenValid ? (
-        <p>Verifying token...</p>
+      {invalid ? (
+        <p className='text-red-500'>Invalid or expired token</p>
       ) : (
         <div className='bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md text-white'>
           <h1 className='text-2xl font-bold mb-6 text-center'>

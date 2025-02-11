@@ -12,6 +12,8 @@ userRouter.put('/pin-snippet', authMiddleware, UserController.pinSnippet)
 
 userRouter.post('/register', UserController.register)
 userRouter.post('/login', UserController.login)
+userRouter.post('/verify-token', UserController.verifyToken)
+userRouter.post('/reset-password', UserController.resetPassword)
 userRouter.post(
   '/send-verification-email',
   UserController.sendVerificationEmail

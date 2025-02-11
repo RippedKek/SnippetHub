@@ -64,7 +64,7 @@ const Skills = ({ color, tech }) => {
       {tech.length > 0 ? (
         techIcons
           .filter((icon) => tech.includes(icon.name))
-          .map((icon) => <span key={icon.id}>{icon.icon}</span>)
+          .map((icon) => <span key={icon.name}>{icon.icon}</span>)
       ) : (
         <p className='text-lg font-bold text-center'>No skills selected yet</p>
       )}

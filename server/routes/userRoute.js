@@ -5,6 +5,11 @@ import UserController from '../controllers/userController.js'
 const userRouter = Router()
 
 userRouter.get('/get-user', authMiddleware, UserController.getUser)
+userRouter.get(
+  '/get-user-profile/:username',
+  authMiddleware,
+  UserController.getUserProfile
+)
 
 userRouter.put('/edit-user', authMiddleware, UserController.editUser)
 userRouter.put('/pin-snippet', authMiddleware, UserController.pinSnippet)

@@ -23,6 +23,22 @@ class UserController {
     }
   }
 
+  static async getUserProfile(req, res) {
+    try {
+      const username = req.params.username
+      const user = await userModel.findOne({ username })
+
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+
+      res.status(200).json({ user })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ message: 'Server error' })
+    }
+  }
+
   static async editUser(req, res) {
     try {
       const userId = req.body.userId

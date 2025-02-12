@@ -2,7 +2,7 @@ import { FaSearch } from 'react-icons/fa'
 
 const SearchBar = () => {
   return (
-    <div className='hidden md:w-[50%] lg:w-[45%] xl:w-[40%] bg-black rounded-[32px] min-h-[50px] md:flex items-center justify-between relative custom-shadow'>
+    <div className='hidden lg:w-[45%] xl:w-[40%] bg-black rounded-[32px] min-h-[50px] md:flex items-center justify-between relative custom-shadow'>
       <input
         type='text'
         placeholder='Search'

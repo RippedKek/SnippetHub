@@ -1,6 +1,7 @@
 import React from 'react'
 
 const UserProfile = ({ user }) => {
+  console.log(user)
   return (
     <div
       className=' w-full pb-8 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500

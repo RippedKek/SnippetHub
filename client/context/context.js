@@ -78,6 +78,31 @@ export const AppProvider = ({ children }) => {
     { name: 'html', icon: <FaHtml5 size={30} /> },
   ]
 
+  const techOptions = [
+    { name: 'Python', value: 'python' },
+    { name: 'CSS', value: 'css' },
+    { name: 'Javascript', value: 'javascript' },
+    { name: 'React', value: 'react' },
+    { name: 'NodeJs', value: 'nodejs' },
+    { name: 'PHP', value: 'php' },
+    { name: 'AWS', value: 'aws' },
+    { name: 'Django', value: 'django' },
+    { name: 'Flutter', value: 'flutter' },
+    { name: 'Firebase', value: 'firebase' },
+    { name: 'Postgresql', value: 'postgresql' },
+    { name: 'MongoDB', value: 'mongodb' },
+    { name: 'MySQL', value: 'mysql' },
+    { name: 'NextJs', value: 'nextjs' },
+    { name: 'TailwindCSS', value: 'tailwindcss' },
+    { name: 'Typescript', value: 'typescript' },
+    { name: 'Git', value: 'git' },
+    { name: 'Docker', value: 'docker' },
+    { name: 'Github', value: 'github' },
+    { name: 'Express', value: 'express' },
+    { name: 'Java', value: 'java' },
+    { name: 'HTML', value: 'html' },
+  ]
+
   const updateUser = (newData) => {
     setUser((prevUser) => ({ ...prevUser, ...newData }))
   }
@@ -109,6 +134,7 @@ export const AppProvider = ({ children }) => {
         loading,
         setLoading,
         techIcons,
+        techOptions,
       }}
     >
       {children}

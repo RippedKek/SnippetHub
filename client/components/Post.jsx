@@ -1,59 +1,57 @@
 'use client'
 
-import { useState } from 'react'
-import { FaPython } from 'react-icons/fa'
+import { useContext, useState } from 'react'
 import { IoLogoJavascript } from 'react-icons/io5'
 import { MdDelete } from 'react-icons/md'
 import { TiPin } from 'react-icons/ti'
-import {
-  FaHtml5,
-  FaReact,
-  FaJava,
-  FaPhp,
-  FaCss3Alt,
-  FaSwift,
-} from 'react-icons/fa'
 import { FaCopy } from 'react-icons/fa'
-import { SiCplusplus, SiTypescript, SiKotlin, SiRuby } from 'react-icons/si'
 import Modal from 'react-modal'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import axios from 'axios'
-
-function getIcon(language, index) {
-  switch (language) {
-    case 'python':
-      return <FaPython size={30} key={index} />
-    case 'javascript':
-      return <IoLogoJavascript size={30} key={index} />
-    case 'react':
-      return <FaReact size={30} key={index} />
-    case 'html':
-      return <FaHtml5 size={30} key={index} />
-    case 'java':
-      return <FaJava size={30} key={index} />
-    case 'php':
-      return <FaPhp size={30} key={index} />
-    case 'css':
-      return <FaCss3Alt size={30} key={index} />
-    case 'swift':
-      return <FaSwift size={30} key={index} />
-    case 'cpp':
-      return <SiCplusplus size={30} key={index} />
-    case 'typescript':
-      return <SiTypescript size={30} key={index} />
-    case 'kotlin':
-      return <SiKotlin size={30} key={index} />
-    case 'ruby':
-      return <SiRuby size={30} key={index} />
-    default:
-      return null
-  }
-}
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaReact,
+  FaJs,
+  FaPhp,
+  FaHtml5,
+  FaCss3Alt,
+  FaNodeJs,
+  FaDocker,
+  FaGitAlt,
+  FaGithub,
+  FaAws,
+  FaJava,
+} from 'react-icons/fa'
+import {
+  SiTailwindcss,
+  SiDjango,
+  SiNextdotjs,
+  SiFlutter,
+  SiFirebase,
+  SiMongodb,
+  SiPython,
+  SiTypescript,
+  SiMysql,
+  SiExpress,
+  SiPostgresql,
+} from 'react-icons/si'
+import { AppContext } from '@/context/context'
 
 const Post = ({ post, self, id }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [copied, setCopied] = useState(false)
+  const { techIcons } = useContext(AppContext)
+
+  function getIcon(language, index) {
+    const techIcon = techIcons.find(
+      (tech) => tech.name.toLowerCase() === language.toLowerCase()
+    )
+
+    return techIcon.icon
+  }
 
   function openModal() {
     setIsOpen(true)

@@ -15,7 +15,7 @@ export default function AddSnippet() {
   const [snippetLanguages, setSnippetLanguages] = useState([])
   const [baseLanguage, setBaseLanguage] = useState('python')
   const [snippetCode, setSnippetCode] = useState('Code here...')
-  const { user, loading, setLoading } = useContext(AppContext)
+  const { user, loading, setLoading, techOptions } = useContext(AppContext)
 
   useEffect(() => {
     if (!localStorage.getItem('token')) {
@@ -136,15 +136,13 @@ export default function AddSnippet() {
                 onChange={handleChange}
                 className='mt-4 w-full h-12 bg-black/20 text-black rounded-2xl px-4 outline-4 outline-black focus:outline-black focus:outline-4'
               >
-                <option value='python'>Python</option>
-                <option value='javascript'>JavaScript</option>
-                <option value='react'>React</option>
-                <option value='html'>HTML</option>
-                <option value='css'>CSS</option>
-                <option value='csharp'>C#</option>
-                <option value='java'>Java</option>
-                <option value='java'>Dart</option>
-                <option value='php'>PHP</option>
+                {techOptions.map((tech, index) => {
+                  return (
+                    <option key={index} value={tech.value}>
+                      {tech.name}
+                    </option>
+                  )
+                })}
               </select>
 
               <select
@@ -154,15 +152,13 @@ export default function AddSnippet() {
                 onChange={handleLanguagesChange}
                 className='mt-4 w-full h-24 bg-black/20 text-black rounded-2xl px-4 outline-4 outline-black focus:outline-black focus:outline-4'
               >
-                <option value='python'>Python</option>
-                <option value='javascript'>JavaScript</option>
-                <option value='react'>React</option>
-                <option value='html'>HTML</option>
-                <option value='css'>CSS</option>
-                <option value='csharp'>C#</option>
-                <option value='java'>Java</option>
-                <option value='java'>Dart</option>
-                <option value='php'>PHP</option>
+                {techOptions.map((tech, index) => {
+                  return (
+                    <option key={index} value={tech.value}>
+                      {tech.name}
+                    </option>
+                  )
+                })}
               </select>
 
               <button

@@ -1,11 +1,14 @@
 import React from 'react'
+import LanguageUsage from './LanguageUsage'
+import LoadingScreen from './LoadingScreen'
 
 const UserProfile = ({ user }) => {
-  console.log(user)
+  if (!user) return <LoadingScreen />
+
   return (
     <div
       className=' w-full pb-8 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500
-border-l-[12px] border-r-[12px]  border-black min-h-[calc(100vh-118px)] overflow-y-scroll flex '
+      border-l-[12px] border-r-[12px]  border-black min-h-[calc(100vh-118px)] overflow-y-scroll flex '
     >
       <div className='w-1/2 py-10 flex flex-col'>
         <div className='w-full flex items-center justify-between'>
@@ -27,7 +30,7 @@ border-l-[12px] border-r-[12px]  border-black min-h-[calc(100vh-118px)] overflow
         </div>
         <div className='w-full bg-[#393939] rounded-2xl p-6 flex flex-col mt-10'>
           <p className='text-sm text-white font-light '>
-            Total Snippets: {user.snippets.length}
+            Total Snippets: {user.totalSnippets}
           </p>
           <p className='text-sm text-white font-light '>
             Pinned Snippets: {user.pinned}
@@ -35,6 +38,7 @@ border-l-[12px] border-r-[12px]  border-black min-h-[calc(100vh-118px)] overflow
           <p className='text-sm text-white font-light mt-4'>
             Top Languages Used:
           </p>
+          {user.username && <LanguageUsage username={user.username} />}
         </div>
       </div>
       <div className='w-1/2 flex items-center '>

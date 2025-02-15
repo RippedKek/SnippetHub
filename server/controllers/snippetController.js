@@ -27,6 +27,24 @@ class SnippetController {
       res.status(500).json({ message: err.message })
     }
   }
+
+  static async getSnippetLanguages(req, res) {
+    try {
+      const username = req.params.username
+      const user = await userModel.findOne({ username })
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+      const snippetIds = user.snippets
+      const snippets = await snippetModel.find({ _id: { $in: snippetIds } })
+      const languages = snippets.map((snippet) => snippet.language[0])
+      res.status(200).json({ languages })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ message: 'Server error' })
+    }
+  }
+
   static async createSnippet(req, res) {
     try {
       const id = req.body.userId
@@ -53,6 +71,7 @@ class SnippetController {
       await Snippet.save()
 
       user.snippets.push(Snippet._id)
+      user.totalSnippets += 1
       await user.save()
 
       res.status(201).json({ Snippet })
@@ -73,6 +92,7 @@ class SnippetController {
       user.snippets = user.snippets.filter(
         (snippet) => snippet.toString() !== id
       )
+      user.totalSnippets -= 1
       await user.save()
       res.status(200).json({ message: 'Snippet deleted successfully' })
     } catch (err) {

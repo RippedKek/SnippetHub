@@ -6,6 +6,10 @@ const snippetRouter = Router()
 
 snippetRouter.get('/get-snippets', SnippetController.listSnippets)
 snippetRouter.get(
+  '/get-snippet-languages/:username',
+  SnippetController.getSnippetLanguages
+)
+snippetRouter.get(
   '/get-user-snippets',
   authMiddleware,
   SnippetController.getUserSnippets

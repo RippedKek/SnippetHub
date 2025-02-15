@@ -80,6 +80,11 @@ const UserSchema = new Schema({
     type: Array,
     default: [],
   },
+  languageUsage: {
+    type: Map,
+    of: Number,
+    default: {},
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

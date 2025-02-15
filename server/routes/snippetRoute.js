@@ -10,6 +10,10 @@ snippetRouter.get(
   SnippetController.getSnippetLanguages
 )
 snippetRouter.get(
+  '/get-snippet-by-username/:username',
+  SnippetController.getSnippetByUsername
+)
+snippetRouter.get(
   '/get-user-snippets',
   authMiddleware,
   SnippetController.getUserSnippets

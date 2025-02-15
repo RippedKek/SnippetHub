@@ -28,6 +28,22 @@ class SnippetController {
     }
   }
 
+  static async getSnippetByUsername(req, res) {
+    try {
+      const username = req.params.username
+      const user = await userModel.findOne({ username })
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+      const snippetIds = user.snippets
+      const snippets = await snippetModel.find({ _id: { $in: snippetIds } })
+      res.status(200).json({ snippets })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ message: 'Server error' })
+    }
+  }
+
   static async getSnippetLanguages(req, res) {
     try {
       const username = req.params.username

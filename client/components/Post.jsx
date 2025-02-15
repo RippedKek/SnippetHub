@@ -10,6 +10,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import axios from 'axios'
 import { AppContext } from '@/context/context'
+import Link from 'next/link'
 
 const Post = ({ post, self, id }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -121,7 +122,9 @@ const Post = ({ post, self, id }) => {
         </button>
       </div>
 
-      <h3 className='font-light text-sm mb-2'>@{post.username}</h3>
+      <Link href={`/profile/${post.username}`}>
+        <h3 className='font-light text-sm mb-2'>@{post.username}</h3>
+      </Link>
       <h1 className='font-bold text-xl'>{post.title}</h1>
 
       <p className='text-sm text-justify font-bold w-full max-h-[200px] mb-1 overflow-auto'>

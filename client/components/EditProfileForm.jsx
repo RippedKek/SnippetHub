@@ -1,35 +1,7 @@
 'use client'
 
 import { useState, useEffect, useContext } from 'react'
-import {
-  SiTailwindcss,
-  SiDjango,
-  SiNextdotjs,
-  SiFlutter,
-  SiFirebase,
-  SiMongodb,
-  SiPython,
-  SiTypescript,
-  SiMysql,
-  SiExpress,
-  SiPostgresql,
-} from 'react-icons/si'
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaReact,
-  FaJs,
-  FaPhp,
-  FaHtml5,
-  FaCss3Alt,
-  FaNodeJs,
-  FaDocker,
-  FaGitAlt,
-  FaGithub,
-  FaAws,
-  FaJava,
-} from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'
 import { TwitterPicker } from 'react-color'
 import axios from 'axios'
 import { ToastContainer, toast, Bounce } from 'react-toastify'

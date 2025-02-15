@@ -2,35 +2,6 @@
 
 import { AppContext } from '@/context/context'
 import { useContext } from 'react'
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaReact,
-  FaJs,
-  FaPhp,
-  FaHtml5,
-  FaCss3Alt,
-  FaNodeJs,
-  FaDocker,
-  FaGitAlt,
-  FaGithub,
-  FaAws,
-  FaJava,
-} from 'react-icons/fa'
-import {
-  SiTailwindcss,
-  SiDjango,
-  SiNextdotjs,
-  SiFlutter,
-  SiFirebase,
-  SiMongodb,
-  SiPython,
-  SiTypescript,
-  SiMysql,
-  SiExpress,
-  SiPostgresql,
-} from 'react-icons/si'
 
 const Skills = ({ color, tech }) => {
   const { techIcons } = useContext(AppContext)

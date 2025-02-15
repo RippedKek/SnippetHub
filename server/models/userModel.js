@@ -72,6 +72,10 @@ const UserSchema = new Schema({
     type: Array,
     default: [],
   },
+  totalSnippets: {
+    type: Number,
+    default: 0,
+  },
   snippets: {
     type: Array,
     default: [],
@@ -79,11 +83,6 @@ const UserSchema = new Schema({
   pins: {
     type: Array,
     default: [],
-  },
-  languageUsage: {
-    type: Map,
-    of: Number,
-    default: {},
   },
   createdAt: {
     type: Date,

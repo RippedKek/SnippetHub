@@ -50,7 +50,7 @@ const LanguageUsage = ({ username, snippetsCount }) => {
       {Object.keys(languageCount).map((language) => (
         <div
           key={language}
-          className='flex items-center justify-between text-white'
+          className='flex items-center justify-between text-white gap-2'
         >
           <div className='flex items-center gap-4 w-full'>
             {techIcons

@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { AppContext } from '@/context/context'
 
-const LanguageUsage = ({ username }) => {
+const LanguageUsage = ({ username, snippetsCount }) => {
   const [languageCount, setLanguageCount] = useState({})
   const { techIcons } = useContext(AppContext)
 
@@ -35,24 +35,39 @@ const LanguageUsage = ({ username }) => {
     }
   }
 
+  const getBarWidth = (count) => {
+    const total = snippetsCount
+    const percentage = (count / total) * 100
+    return `${percentage}%`
+  }
+
   useEffect(() => {
     fetchUserSnippets()
   }, [])
 
   return (
-    <div className='w-full flex flex-col'>
-      <div className='flex items-center justify-between'>
-        {Object.keys(languageCount).map((language) => (
-          <div key={language} className='flex items-center gap-2'>
+    <div className='w-full flex flex-col gap-3 mt-3'>
+      {Object.keys(languageCount).map((language) => (
+        <div
+          key={language}
+          className='flex items-center justify-between text-white'
+        >
+          <div className='flex items-center gap-4 w-full'>
             {techIcons
               .filter((icon) => icon.name === language)
               .map((icon) => (
                 <span key={icon.name}>{icon.icon}</span>
               ))}
-            <p className='text-sm'>{languageCount[language]}</p>
+            <div
+              style={{ width: getBarWidth(languageCount[language]) }}
+              className='h-[5px] bg-green-500 rounded-lg'
+            >
+              {' '}
+            </div>
           </div>
-        ))}
-      </div>
+          <p className='text-sm'>{languageCount[language]}</p>
+        </div>
+      ))}
     </div>
   )
 }

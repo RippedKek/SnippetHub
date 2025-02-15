@@ -38,7 +38,12 @@ const UserProfile = ({ user }) => {
           <p className='text-sm text-white font-light mt-4'>
             Top Languages Used:
           </p>
-          {user.username && <LanguageUsage username={user.username} />}
+          {user.username && (
+            <LanguageUsage
+              username={user.username}
+              snippetsCount={user.totalSnippets}
+            />
+          )}
         </div>
       </div>
       <div className='w-1/2 flex items-center '>

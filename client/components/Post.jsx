@@ -1,7 +1,6 @@
 'use client'
 
 import { useContext, useState } from 'react'
-import { IoLogoJavascript } from 'react-icons/io5'
 import { MdDelete } from 'react-icons/md'
 import { TiPin } from 'react-icons/ti'
 import { FaCopy } from 'react-icons/fa'

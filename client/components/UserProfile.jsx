@@ -4,6 +4,11 @@ import React, { useEffect, useState } from 'react'
 import LanguageUsage from './LanguageUsage'
 import LoadingScreen from './LoadingScreen'
 import axios from 'axios'
+import { FaCopy } from 'react-icons/fa'
+import Modal from 'react-modal'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import Post from './Post'
 
 const UserProfile = ({ user }) => {
   const [snippets, setSnippets] = useState([])
@@ -69,20 +74,17 @@ const UserProfile = ({ user }) => {
         </div>
       </div>
       <div className='w-1/2 flex justify-center'>
-        <div className='w-[90%] bg-[#393939] rounded-2xl p-6 pt-0 text-white max-h-[450px] overflow-y-scroll'>
-          <h1 className='w-full bg-inherit text-2xl font-bold sticky top-0 pt-6'>
+        <div className='w-fit bg-[#393939] rounded-2xl p-6 pt-0 text-white max-h-[470px] overflow-y-scroll'>
+          <h1 className='w-full bg-inherit text-2xl font-bold sticky top-0 pt-6 z-[9998]'>
             Recent Posts
           </h1>
           {snippets.map((snippet) => (
-            <div
+            <Post
               key={snippet._id}
-              className='w-full border-b-[1px] border-[#545454] py-4'
-            >
-              <p className='text-sm font-bold'>{snippet.title}</p>
-              <p className='text-sm font-light text-justify'>
-                {snippet.description}
-              </p>
-            </div>
+              post={snippet}
+              self={false}
+              id={snippet._id}
+            />
           ))}
         </div>
       </div>

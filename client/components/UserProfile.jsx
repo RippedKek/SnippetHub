@@ -38,9 +38,11 @@ const UserProfile = ({ user }) => {
       <div className='w-1/2 flex flex-col'>
         <div className='w-full flex items-center justify-between'>
           <h1 className='text-4xl font-bold text-black'>{user.name}</h1>
-          <button className='px-6 py-2 rounded-2xl bg-green-500 border-[4px] border-black cursor-pointer font-semibold'>
-            follow
-          </button>
+          {loggedInUser.username !== user.username && (
+            <button className='px-6 py-2 rounded-2xl bg-green-500 border-[4px] border-black cursor-pointer font-semibold'>
+              follow
+            </button>
+          )}
         </div>
         <div className='w-full flex flex-col items-start '>
           <h3 className='text-lg font-medium text-[#545454]'>

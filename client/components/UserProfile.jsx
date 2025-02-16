@@ -1,17 +1,15 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import LanguageUsage from './LanguageUsage'
 import LoadingScreen from './LoadingScreen'
 import axios from 'axios'
-import { FaCopy } from 'react-icons/fa'
-import Modal from 'react-modal'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import Post from './Post'
+import { AppContext } from '@/context/context'
 
 const UserProfile = ({ user }) => {
   const [snippets, setSnippets] = useState([])
+  const { user: loggedInUser } = useContext(AppContext)
 
   const fetchUserSnippets = async () => {
     try {
@@ -82,7 +80,7 @@ const UserProfile = ({ user }) => {
             <Post
               key={snippet._id}
               post={snippet}
-              self={false}
+              self={loggedInUser.username === user.username ? true : false}
               id={snippet._id}
             />
           ))}

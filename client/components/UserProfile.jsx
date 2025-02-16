@@ -35,7 +35,7 @@ const UserProfile = ({ user }) => {
   return (
     <div
       className=' w-full pb-8 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500
-      border-l-[12px] border-r-[12px]  border-black min-h-[calc(100vh-118px)] overflow-y-scroll flex-col md:flex-row justify-between py-10'
+      border-l-[12px] border-r-[12px]  border-black min-h-[calc(100vh-118px)] overflow-y-scroll flex flex-col md:flex-row justify-between py-10'
     >
       <div className='w-full md:w-1/2 flex flex-col'>
         <div className='w-full flex items-center justify-between'>
@@ -75,7 +75,7 @@ const UserProfile = ({ user }) => {
           )}
         </div>
       </div>
-      <div className='w-full mt-10 md:w-1/2 flex justify-center'>
+      <div className='w-full mt-10 md:w-1/2 md:mt-0 flex justify-center'>
         <div className='w-fit bg-[#393939] rounded-2xl p-6 pt-0 text-white max-h-[470px] overflow-y-scroll'>
           <h1 className='w-full bg-inherit text-2xl font-bold sticky top-0 pt-6 z-[9998]'>
             Recent Posts
